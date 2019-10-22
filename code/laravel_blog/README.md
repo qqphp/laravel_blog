@@ -7,18 +7,17 @@
 3. 管理后台使用 Laravel-admin1.73 版本
 4. 使用 Pjax 异步无刷新加载
 5. 各个板块可自定义、扩展性强、注重细节、性能优秀
-6. 写作支持 MarkDown 语法、Simditor 编辑器
-7. 添加你的歌单，让歌曲陪伴阅读
-8. 添加个人相册，一份回忆，一份分享
-9. 支持超大文件视频上传与播放
-10. 邮箱订阅，第一时间推送精彩文章
-11. 多种类型的自定义个人展示设定，大胆展示自己。
-
-***可能是世界上最漂亮的博客之一！！！***
+6. 写作支持 MarkDown 语法编辑器、Simditor 编辑器
+7. 完美支持音乐播放、相册管理、视频播放
+8. 支持邮箱订阅，发布文章，队列邮件通知
+9. 支持多种 Live2D 看板娘动画
+10. 可能是世界上最漂亮的博客之一！！！
 
 #### 如何搭建此博客？
 - ##### 1.前往码云获取项目clone地址
->码云项目地址:`https://gitee.com/leiyong3/laravel_blog`
+> 码云项目地址 :`https://gitee.com/leiyong3/laravel_blog`
+
+> GitHub项目地址 :`https://github.com/qqphp-com/laravel-blog-poetry-all`
 
 - ##### 2.使用git，克隆项目到所需存放目录
  - 示例语法：`git clone https://gitee.com/leiyong3/laravel_blog.git hqj_blog`
