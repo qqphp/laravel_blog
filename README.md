@@ -6,6 +6,8 @@
   
 > 本博客会一直维护和更新，已有基础上做调整，最大程度上确保原有用户可以 pull 代码，获取最佳体验。
 
+![Laravel诗词博客](http://qqphp.com/uploads/images/20b108da69c0da1a1d83c1ab8cfebb15.png)
+
 #### 简介
 1. 采用 Laravel5.8 版本框架搭建
 2. 前端使用 Bootstrap4 框架，适配移动、PC
