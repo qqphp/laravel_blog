@@ -1,0 +1,41 @@
+{
+  "name": "toc-helper",
+  "version": "1.1.1",
+  "description": "文章目录结构自动生成工具",
+  "main": "./js/toc-helper.min.js",
+  "author": "xiaolang",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp dev",
+    "build": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itlangzi/toc-helper"
+  },
+  "keywords": [
+    "toc",
+    "toc-helper",
+    "it浪子",
+    "itlangzi"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "autoprefixer": "^9.4.9",
+    "cssnano": "^4.1.10",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-zip": "^4.2.0",
+    "rollup": "^1.4.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-terser": "^4.0.4"
+  },
+  "dependencies": {}
+}

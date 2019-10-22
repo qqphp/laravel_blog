@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="小浪">
+    <meta name="keywords" content="it浪子,文章目录生成,TOC,侧边栏目录的滚动效果">
+    <meta name="description" content="为文章动态生成侧边栏目录以及静态侧边栏目录的滚动效果">
+    <meta name="robots" content="all">
+    <meta name="renderer" content="webkit">
+    <title>TOC 文章目录生成</title>
+    <link href="lib/prism.css" rel="stylesheet">
+    <link href="./css/toc-helper.min.css" rel="stylesheet">
+    <style>
+        html {
+            font-size: 16px;
+        }
+
+        @media (min-width: 576px) {
+            .container {
+                max-width: 540px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+            position: relative;
+        }
+
+        .col-sm-8 {
+            flex: 0 0 66.66667%;
+            max-width: 66.66667%;
+        }
+
+        .col-sm-9 {
+            flex: 0 0 75%;
+            max-width: 75%;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .col-sm-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .col-sm-4 {
+            flex: 0 0 33.33333%;
+            max-width: 33.33333%;
+        }
+
+        .col-sm-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: #00a3e8;
+            color: #fff;
+            font-size: 1.25rem;
+            padding: .5rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        header .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo>img {
+            height: 60px;
+        }
+
+        .github {
+            margin-left: auto !important;
+        }
+
+        code.code {
+            color: #333;
+            background: #eee;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        pre {
+            background: #ccc;
+            border-radius: 4px;
+            color: #333;
+            padding: 5px 10px;
+            margin: 5px 0;
+        }
+
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 15px 0;
+        }
+
+        p.api {
+            font-weight: bold;
+        }
+
+        strong {
+            font-size: 15px;
+        }
+
+        small {
+            color: #555;
+            padding-left: 10px;
+        }
+
+        button {
+            position: fixed;
+            top: 93px;
+            z-index: 5;
+            background: #00a3e8;
+            color: #fff;
+            border: 0;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        footer {
+            background: #343a40;
+            color: #999;
+            padding: 20px 0;
+            font-size: 13px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ccc;
+        }
+
+        footer .container {
+            text-align: center;
+        }
+
+        .blockquote-footer {
+            display: block;
+            font-size: 80%;
+            color: #6c757d;
+        }
+
+        .normal h1,
+        .normal h2,
+        .normal h3,
+        .normal h4,
+        .normal h5,
+        .normal h6 {
+            margin-top: -83px;
+            padding-top: 83px;
+        }
+
+        .scroll {
+            position: relative;
+            max-height: 500px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <img src="./images/toc-logo.png">
+                </div>
+                <div class="github">
+                    <a href="https://github.com/itlangzi" target="_blank">
+                        <svg t="1551410826325" class="icon" style="" viewBox="0 0 1028 1024" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg" p-id="2179" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="40" height="40">
+                            <path
+                                d="M316.806387 841.06986q0-9.197605 9.197605-9.197605t9.197605 9.197605-9.197605 9.197605-9.197605-9.197605zM274.906188 830.850299q0-9.197605 9.197605-9.197605 10.219561 0 10.219561 9.197605 0 10.219561-10.219561 10.219561-9.197605 0-9.197605-10.219561zM509.956088 0q106.283433 0 199.792415 40.367265t163.001996 109.860279 109.860279 163.001996 40.367265 199.792415q0 82.778443-25.037924 158.914172t-69.493014 138.986028-106.794411 110.371257-135.92016 74.091816q-11.241517 2.043912-25.548902 1.021956t-17.373253-18.39521q-2.043912-12.263473-3.576846-32.702595t-2.043912-41.9002-1.021956-40.878244-0.510978-28.61477-3.576846-23.50499-8.175649-27.592814-9.197605-24.015968-6.642715-13.796407q-2.043912-2.043912 14.307385-4.598802t41.389222-9.708583 54.674651-20.439122 55.185629-35.257485 42.411178-54.163673 16.862275-78.179641q0-69.493014-8.175649-108.327345t-17.373253-58.251497q-11.241517-22.483034-25.548902-28.61477 6.131737-33.724551 9.197605-61.317365 2.043912-23.50499 0.510978-44.966068t-12.774451-27.592814q-11.241517-5.10978-33.213573 2.043912t-45.477046 18.39521q-26.570858 13.285429-57.229541 32.702595-15.329341-5.10978-33.724551-9.197605-16.351297-4.087824-38.834331-7.153693t-50.075848-3.065868-52.630739 3.065868-44.45509 6.131737q-22.483034 4.087824-41.9002 9.197605-30.658683-17.373253-57.229541-29.636727-23.50499-11.241517-45.988024-18.39521t-32.702595-3.065868q-11.241517 5.10978-13.796407 26.05988t-1.532934 45.477046q1.021956 28.61477 5.10978 63.361277-14.307385 15.329341-25.548902 36.790419-10.219561 18.39521-17.884232 44.966068t-7.664671 59.273453q0 47.00998 9.708583 82.778443t26.05988 61.828343 37.301397 43.944112 42.411178 29.125749q51.097804 26.570858 116.502994 30.658683-8.175649 9.197605-14.307385 17.373253-5.10978 7.153693-9.197605 13.796407t-4.087824 9.708583-0.510978 7.664671-1.532934 9.708583l-2.043912 10.219561q-10.219561 4.087824-21.461078 7.153693-9.197605 3.065868-20.439122 5.10978t-22.483034 2.043912-27.592814-11.752495-33.213573-27.081836-30.658683-30.147705-19.928144-20.9501q-6.131737-5.10978-16.351297-8.686627t-20.439122-5.620758-18.39521-2.55489-11.241517 0.510978q-6.131737 3.065868-9.197605 8.686627t5.10978 8.686627q4.087824 2.043912 11.752495 7.664671t15.840319 13.285429 15.329341 15.329341 10.219561 12.774451 9.197605 22.483034 19.928144 35.768463 36.790419 32.702595 61.828343 14.307385q26.570858 0 40.367265-0.510978t20.9501-1.532934l0 78.690619q0 6.131737-1.532934 13.796407t-5.620758 13.285429-11.241517 8.175649-18.39521-0.510978q-2.043912-1.021956-6.131737-1.021956-74.602794-26.570858-136.942116-74.091816t-107.816367-110.882236-71.025948-139.497006-25.548902-159.936128q0-106.283433 40.367265-199.792415t109.860279-163.001996 163.512974-109.860279 200.303393-40.367265zM380.167665 878.882236q4.087824 1.021956 6.131737 2.043912 5.10978 3.065868-6.131737 4.087824l0-6.131737zM359.728543 833.916168q0-10.219561 9.197605-10.219561t9.197605 10.219561q0 9.197605-9.197605 9.197605t-9.197605-9.197605zM177.820359 731.720559q0-6.131737 7.153693-6.131737t7.153693 6.131737q0 7.153693-7.153693 7.153693t-7.153693-7.153693zM246.291417 809.389222q0-9.197605 9.197605-9.197605t9.197605 9.197605q0 10.219561-9.197605 10.219561t-9.197605-10.219561zM207.457086 747.0499q7.153693 0 7.153693 7.153693t-7.153693 7.153693-7.153693-7.153693 7.153693-7.153693zM217.676647 780.774451q0-9.197605 9.197605-9.197605t9.197605 9.197605q0 10.219561-9.197605 10.219561t-9.197605-10.219561z"
+                                p-id="2180" fill="#ffffff"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container" style="margin-top:83px;">
+        <div class="row">
+            <div class="col-sm-6" style="text-align:right;"><button onclick="switchBtn()">切换body/div</button></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9 normal" id="scroll">
+
+                <div data-toc="#toc">
+                    <h1>TOC目录生成</h1>
+                    <h2>一、简介</h2>
+                    <code class="code">TocHelper</code> , 是一款给文章自动生成目录及侧边栏目录滚动特效的插件
+                    <div style="padding: 20px">
+                        <strong>特点：</strong>
+                        <ul>
+                            <li><code class="code">jQuery Free</code></li>
+                            <li>方便、灵活、高度定制化</li>
+                            <li>自动退级</li>
+                            <li><code class="code">Hash</code>定位</li>
+                            <li>目录跟随<code class="code">body/div</code>滚动</li>
+                        </ul>
+                    </div>
+
+                    <h2>二、使用</h2>
+                    <h3> 2.1 浏览器</h3>
+                    2.1.1 引入css和js
+                    <pre class="language-html line-numbers"><code>&lt;link href="css/toc-helper.min.css" rel="stylesheet" /&gt;
+&lt;script src="js/toc-helper.min.js"&gt;&lt;/script&gt;</code></pre>
+                    2.1.2 文章内容添加 <code class="code">data</code> 属性，值指向目录元素：<code class="code">data-toc="#toc"</code>
+                    <pre class="language-html line-numbers"><code>&lt;div data-toc="#toc"&gt; &lt;/div&gt;</code></pre>
+                    <strong>注意：</strong><code class="code">#toc</code>选择器对应的目录元素必须存在
+                    <pre class="language-html line-numbers"><code>&lt;div id="toc"&gt; &lt;/div&gt;</code></pre>
+                    2.1.3 目录已经存在, 调用<code class="code">reload()</code>方法
+                    <pre class="language-javascript line-numbers"><code>new TocHelper().reload();</code></pre>
+                    2.1.4 目录若不存在, 调用<code class="code">reset()</code>方法，自动创建目录
+                    <pre class="language-javascript line-numbers"><code>new TocHelper().reset();</code></pre>
+
+                    <h3> 2.2 使用<code class="code">Webpack</code>, <code class="code">Browserify</code>, <code
+                            class="code">Gulp</code>，<code class="code">Rollup</code> 等构建工具</h3>
+                    <p>2.2.1 使用 <code class="code">npm</code> 安装 <code class="code">TocHelper</code></p>
+                    <p>
+                        <code class="code">npm install toc-helper --save</code> OR <code
+                            class="code"> yarn add toc-helper </code>
+                    </p>
+
+                    <p>2.2.2 使用<code class="code">require</code> 引入</p>
+                    <pre class="language-javascript line-numbers"><code>require('toc-helper/css/toc-helper.min.css')
+const TocHelper = require('toc-helper')</code></pre>
+
+                    <p>2.2.3 使用<code class="code">import</code> 引入</p>
+                    <pre class="language-javascript line-numbers"><code>import 'toc-helper/css/toc-helper.min.css'
+import TocHelper from 'toc-helper'</code></pre>
+
+                    <p>2.2.4 简单应用</p>
+                    <pre class="language-javascript line-numbers"><code>new TocHelper().reload()</code></pre>
+
+                    <h2>三 、API</h2>
+                    <h3> TocHelper([selector,options])</h3>
+                    <small>构造器方法, 只能通过<code class="code">new</code>创建实例</small>
+                    <p><code class="code"><strong> selector </strong> </code></p>
+                    <p>类型: <code class="code"> string | HTMLElement | Object </code></p>
+                    <p>默认值: <code class="code"> 无 </code></p>
+                    <p><code class="code">selector</code> 若为字符串，则必须是选择器，切可以通过该选择器获取相应的元素，否则无效</p>
+                    <p><code class="code">selector</code> 若为<code class="code">Object</code> ，则 <code
+                            class="code">options = selector</code> 第二个参数无效</p>
+                    <p><code class="code"><strong>options</strong></code></p>
+                    <h3>megre(newOptions)</h3>
+                    <small>TocHelper 的实例方法</small>
+                    <p><code class="code"><strong> newOptions </strong> </code></p>
+                    <p>类型: <code class="code"> Object </code></p>
+                    <p>默认值: <code class="code"> {} </code></p>
+                    <p>合并初始的 <code class="code">options</code> 参数，并重新<code class="code">load</code>; 比如 <code
+                            class="code">class</code> 样式发生改变, <code class="code">megre</code> 之后需要调用 <code
+                            class="code">reload</code> 方法</p>
+                    <h3> reload() </h3>
+                    <small>无参</small>
+                    <p>实例化以及重新<code class="code">megre</code>之后需要调用该方法</p>
+                    <small> 实例化后若目录已经存在则调用该方法，若不存在则调用<code class="code">reset</code> 方法，生成目录会自动调用该方法 </small>
+                    <h3> reset() </h3>
+                    <small>无参</small>
+                    <p>目录不存在或需要重新生成目录使用该方法</p>
+                    <h2>四、配置</h2>
+                    <h3><strong>options </strong></h3>
+                    <h4><code class="code"><strong>dom</strong></code> </h4>
+                    <small>文章内容<code class="code">Dom</code>元素， 选择器或 <code class="code">HTMLElement</code> 类型的<code
+                            class="code">Dom</code>元素</small>
+                    <p>类型：<code class="code">string | HTMLElement</code></p>
+                    <p>默认值：<code class="code">*[data-toc]</code></p>
+
+                    <h4><code class="code"><strong>classNames </strong></code> </h4>
+                    <small><code class="code">class</code>选择器名称</small>
+
+                    <h5><code class="code"><strong> toc </strong></code> </h5>
+                    <small>目录元素的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc</code></p>
+
+                    <h5><code class="code"><strong> fxied </strong></code> </h5>
+                    <small>目录元素<code class="code">position=fixed</code>的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-fixed</code></p>
+
+                    <h5><code class="code"><strong> brand </strong></code> </h5>
+                    <small>目录字的（两个字）<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-brand</code></p>
+
+                    <h5><code class="code"><strong> navbar </strong></code> </h5>
+                    <small>目录菜单<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-navbar</code></p>
+
+                    <h5><code class="code"><strong> hightlight </strong></code> </h5>
+                    <small>激活高亮/鼠标悬停高亮的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-hightlight</code></p>
+
+                    <h5><code class="code"><strong> nav </strong></code> </h5>
+                    <small>菜单父级节点<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-nav</code></p>
+
+                    <h5><code class="code"><strong> link </strong></code> </h5>
+                    <small>菜单项<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-link</code></p>
+
+                    <h5><code class="code"><strong> active </strong></code> </h5>
+                    <small>菜单项激活后的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">active</code></p>
+
+                    <h5><code class="code"><strong> marginLeft1 </strong></code> </h5>
+                    <small>二级标题偏移的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">ml-1</code></p>
+
+                    <h5><code class="code"><strong> marginLeft2 </strong></code> </h5>
+                    <small>三级标题偏移的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">ml-2</code></p>
+
+                    <h5><code class="code"><strong> marginLeft3 </strong></code> </h5>
+                    <small>四级标题偏移的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">ml-3</code></p>
+
+                    <h5><code class="code"><strong> marginLeft4 </strong></code> </h5>
+                    <small>五级标题偏移的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">ml-4</code></p>
+
+                    <h5><code class="code"><strong> marginLeft5 </strong></code> </h5>
+                    <small>六级标题偏移的<code class="code">class</code>选择器名称</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">ml-5</code></p>
+
+                    <h5><code class="code"><strong><del> marginLeft6 </del></strong></code> </h5>
+                    <small><del>暂无</del></small>
+
+                    <h4><code class="code"><strong> hightlight </strong></code> </h4>
+                    <small>是否高亮显示</small>
+                    <p>类型：<code class="code">Boolean</code></p>
+                    <p>默认值：<code class="code">true</code></p>
+
+                    <h4><code class="code"><strong> brand </strong></code> </h4>
+                    <small>目录文本</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">目录</code></p>
+
+                    <h4><code class="code"><strong> shadow </strong></code></h4>
+                    <small>目录阴影</small>
+                    <p>类型：<code class="code">string | false</code></p>
+                    <p>默认值：<code class="code">shadow</code></p>
+                    <small>若为<code class="code">string</code> ，则提供阴影的样式<code class="code">class</code>选择器名称, <code
+                            class="code">false</code>表示禁用阴影</small>
+
+                    <h4><code class="code"><strong> idPrefix </strong></code></h4>
+                    <small>生成ID选择器的前缀</small>
+                    <p>类型：<code class="code">string</code></p>
+                    <p>默认值：<code class="code">toc-heading-</code></p>
+                    <small>后缀由数字组成</small>
+
+                    <h4><code class="code"><strong> offsetBody </strong></code></h4>
+                    <small>内容父级定位元素，该元素必须存在<code class="code">position</code>属性，切<code
+                            class="code">position</code>的值不等于<code class="code">static</code>, 否则此值等于<code
+                            class="code">body</code></small>
+                    <p>类型：<code class="code">string | HTMLElement</code></p>
+                    <p>默认值：<code class="code">document.body</code></p>
+                    <small>为<code class="code">string</code>类型时，必须是选择器；无论是<code class="code">string</code>类型，还是<code
+                            class="code">HTMLElement</code>类型，都必须有<code class="position">position</code>属性，切<code
+                            class="position">position</code>的值不等于<code class="code">static</code>, 否则此值等于<code
+                            class="code">body</code></small>
+
+                    <h4><code class="code"><strong> tocFixed </strong></code></h4>
+                    <small>不使用或设置目录<code class="code">fixed</code>定位</small>
+                    <p>类型：<code class="code"> false | Object </code></p>
+                    <p>默认值：<code class="code">如下</code></p>
+                    <small><code class="code">false</code>表示不使用<code class="code">fixed</code>定位；<code
+                            class="code">Object</code>如下：</small>
+
+                    <h5><code class="code"><strong> top </strong></code></h5>
+                    <small>目录距离文档顶部的偏移量</small>
+                    <p>类型：<code class="code"> Number </code></p>
+                    <p>默认值：<code class="code">24</code></p>
+
+                    <h5><code class="code"><strong> left </strong></code></h5>
+                    <small>目录距离文档左侧的偏移量</small>
+                    <p>类型：<code class="code"> Number </code></p>
+                    <p>默认值：<code class="code">无</code></p>
+
+                    <h4><code class="code"><strong> maxDepth </strong></code></h4>
+                    <small>目录最大层级</small>
+                    <p>类型：<code class="code"> Number </code></p>
+                    <p>默认值：<code class="code">6</code></p>
+                    <small>层级最大为<code class="code">6</code> ，最小为<code class="code">1</code>，其他值无效</small>
+
+                    <h4><code class="code"><strong> autoScroll </strong></code></h4>
+                    <small>自动添加滚动条; 若<code class="code">autoScroll=true</code>需满足以下条件：<br/>1、目录高度要大于可视高度 <br/>2、<code class="code">tocFixed</code>不等于<code class="code">false</code></small>
+                    <p>类型：<code class="code"> Boolean </code></p>
+                    <p>默认值：<code class="code">true</code></p>
+
+                    <h2>五、示例<code class="code">options</code>全部配置信息</h2>
+
+                    <pre class="language-javascript line-numbers"><code>
+{
+    dom: '*[data-toc]', // 文章内容元素 选择器 或 HTMLElement
+    classNames: {       // class选择器
+        toc: 'toc',
+        fxied: 'toc-fixed',
+        brand: 'toc-brand',
+        navbar: 'toc-navbar',
+        hightlight: 'toc-hightlight',
+        nav: 'toc-nav',
+        link: 'toc-link',
+        active: 'active',
+        marginLeft1: 'ml-1',
+        marginLeft2: 'ml-2',
+        marginLeft3: 'ml-3',
+        marginLeft4: 'ml-4',
+        marginLeft5: 'ml-5',
+        marginLeft6: 'ml-6'
+    },
+    hightlight: true,
+    brand: '目录',
+    shadow: 'shadow',
+    idPrefix: 'toc-heading-',
+    offsetBody: document.body,
+    tocFixed: {
+        top: 24,
+        left: 0
+    },
+    maxDepth: 6,
+    autoScroll: true
+}
+                    </code></pre>
+                    <h1>注意：</h1>
+                    <p>使用锚点 /<code class="code">Hash</code>定位时，若存在头部使用了<code class="code">fixed</code>或<code
+                            class="code">absolute</code>定位，会出现定位没达到预期效果; 可将所有的标题<code
+                            class="code">padding-top</code>等于头部的高, <code
+                            class="code">margin-top</code>等于头部高的相反值，这样可以解决定位不准切不会影响布局；</p>
+                    <p>示例代码如下:</p>
+                    <small>本示例也是本页中所使用的方案, 本页中头部高度为<code class="code">83px</code></small>
+                    <pre class="language-css"><code>*[data-toc] h1,
+*[data-toc] h2,
+*[data-toc] h3,
+*[data-toc] h4,
+*[data-toc] h5,
+*[data-toc] h6 {
+    margin-top: -83px;
+    padding-top: 83px;
+}</code></pre>
+                    <h1>即将支持的功能</h1>
+                    <ol style="padding:20px;">
+                        <li><del>目录自动添加滚动条 已实现</del></li>
+                        <li><del>实现内容->目录联动滚动 已实现</del></li>
+                        <li>自动折叠/展开</li>
+                        <li>支持横向目录</li>
+                        <li>同步高亮文章中的标题</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="toc" id="toc">
+                    <!-- <div class="toc-brand">目录</div>
+                    <nav class="toc-navbar">
+                        <div class="toc-hightlight"></div>
+                        <nav class="toc-nav">
+                            <a class="toc-link" href="#test-h5-1">123131</a>
+                            <a class="toc-link" href="#test-h4-1">测试2</a>
+                            <a class="toc-link" href="#test-h1-1">长度</a>
+                            <nav class="toc-nav">
+                                <a class="toc-link ml-1" href="#test-h2-1">长度123132</a>
+                                <a class="toc-link ml-1" href="#toc-heading-1">长度456</a>
+                                <nav class="toc-nav">
+                                    <a class="toc-link ml-2" href="#toc-heading-2">面积123123</a>
+                                    <nav class="toc-nav">
+                                        <a class="toc-link ml-4"
+                                            href="">面积123123面积123123面积123123面积123123面积123123面积123123面积123123面积123123面积123123面积123123面积123123面积123123</a>
+                                    </nav>
+                                </nav>
+                            </nav>
+                        </nav>
+                    </nav> -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <footer>
+        <div class="container">
+            <blockquote class="blockquote">
+                <p class="mb-0"> Copyright © 2019-2020 <a href="http://www.itlangzi.com" target="_blank">it浪子技术博客</a>
+                    版权所有 </p>
+                <div class="blockquote-footer">Design By <cite title="小浪"> 小浪 </cite></div>
+            </blockquote>
+        </div>
+    </footer>
+
+    <script src="./lib/prism.js"></script>
+    <script src="./js/toc-helper.min.js"></script>
+    <script>
+        const tocHelper = new TocHelper({
+            dom: 'div[data-toc]',
+            offsetBody: document.querySelector('#scroll'),
+            tocFixed: {
+                top: 83
+            }
+        })
+        tocHelper.reset()
+        const switchBtn = function () {
+            const scroll = document.querySelector('#scroll')
+            scroll.classList.contains('normal') ? (scroll.classList.remove('normal'), scroll.classList.add('scroll')) : (scroll.classList.add('normal'), scroll.classList.remove('scroll'))
+            tocHelper.megre({ offsetBody: document.querySelector('#scroll') }).reload()
+        }
+
+    </script>
+</body>
+
+</html>

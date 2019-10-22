@@ -1,0 +1,33 @@
+{
+    "type": "miku",
+    "name": "model",
+    "model": "model.moc",
+    "textures": ["texture_00.png"],
+    "layout":{
+        "center_x":-0.3,
+        "center_y":-0.08,
+        "width":1.8
+    },
+    "hit_areas_custom":{
+        "head_x":[-0.80, 0.85],
+        "head_y":[-0.45, 0.45],
+        "body_x":[-0.75, 0.45],
+        "body_y":[-0.50, 0]
+    },
+    "motions":
+    {
+        "idle": [
+            {"file": "motions/miku_idle_01.mtn"}
+        ],
+        "sleepy": [
+            {"file": "motions/miku_m_01.mtn"},
+            {"file": "motions/miku_m_02.mtn"},
+            {"file": "motions/miku_m_03.mtn"},
+            {"file": "motions/miku_m_04.mtn"},
+            {"file": "motions/miku_m_05.mtn"},
+            {"file": "motions/miku_m_06.mtn"},
+            {"file": "motions/miku_shake_01.mtn"}
+        ]
+    },
+    "physics": "physics.json"
+}

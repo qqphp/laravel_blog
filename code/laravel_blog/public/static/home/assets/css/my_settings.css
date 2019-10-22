@@ -1,0 +1,96 @@
+::-webkit-scrollbar {
+    /*隐藏滚轮*/
+    display: none;
+}
+
+.bd-callout-info {}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    text-align: left;
+    border-left-color: #5bc0de;
+}
+
+.bd-callout-info h4 {
+    color: #5bc0de;
+}
+
+.bd-callout h4 {
+    margin-top: 0;
+    margin-bottom: .25rem;
+}
+
+.bd-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.video-img {
+    height: 220px;
+    background-position: 50%;
+    background-size: cover;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+
+.photo-img {
+    height: 160px;
+    background-position: 50%;
+    background-size: cover;
+    text-align: center;
+    border-radius: 12px 12px 0 0;
+}
+.sentence {
+    margin-bottom: 20px;
+    position: relative;
+    padding: 30px 10px 10px 10px;
+    border: 1px solid #EEE;
+    cursor: default;
+}
+
+.sentence strong {
+    background: #3399CC;
+    color: #FFF;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 5px 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sentence h2 {
+    color: #3399CC;
+    font-size: 20px;
+    margin: 10px 0px;
+}
+
+.sidebar .sentence p {
+    font-size: 12px;
+    color: #AAA;
+}
+
+.subscribe-line {
+    background-color: #fffcf5;
+    padding: 35px 0;
+    background-position: 50%;
+    background-size: cover;
+    background-attachment: fixed;
+    margin-top: 0;
+}
+
+/*pjax 动画*/
+.loading {
+    display:none
+}
+.loading{height:100%;width:100%;position:fixed;top:0;left:0;z-index:999999;background-color:rgba(250,250,250,.9)}
+.loading img{width: 280px;height:210px;position: relative;top: 45%;left: 50%;margin-left:-140px;margin-top: -105px;}
+#loader{display: block; position: relative; left: 50%; top: 50%; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid transparent; border-top-color: #ff5a5a; -webkit-animation: spin 1s linear infinite; animation: spin 1s linear infinite;}
+#loader:before{content: ""; position: absolute; top: 5px; left: 5px; right: 5px; bottom: 5px; border-radius: 50%; border: 3px solid transparent; border-top-color: #5af33f; -webkit-animation: spin 3s linear infinite; animation: spin 3s linear infinite;}
+#loader:after{content: ""; position: absolute; top: 15px; left: 15px; right: 15px; bottom: 15px; border-radius: 50%; border: 3px solid transparent; border-top-color: #6dc9ff; -webkit-animation: spin 2s linear infinite; animation: spin 2s linear infinite;}
+@-webkit-keyframes spin{0%{-webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg);} 100%{-webkit-transform: rotate(360deg); -ms-transform: rotate(360deg); transform: rotate(360deg);}}
+@keyframes spin{0%{-webkit-transform: rotate(0deg); -ms-transform: rotate(0deg); transform: rotate(0deg);} 100%{-webkit-transform: rotate(360deg); -ms-transform: rotate(360deg); transform: rotate(360deg);}}

@@ -1,0 +1,50 @@
+{
+    "version": "Sample 1.0.0",
+    "model": "model.moc",
+    "textures": ["texture_00.png"],
+    "name": "hijiki",
+    "pose": "pose.json",
+    "layout":{
+        "center_x": 0,
+        "center_y": -0.1,
+        "width": 1.9
+    },
+    "hit_areas_custom":{
+        "head_x":[-0.35, 0.6],
+        "head_y":[0.19, -0.2],
+        "body_x":[-0.3, -0.25],
+        "body_y":[0.3, -0.9]
+    },
+    "motions":
+    {
+        "idle": [
+        {
+            "file": "motions/00_idle.mtn"
+        }],
+        "tap_body": [
+        {
+            "file": "motions/01.mtn"
+        },
+        {
+            "file": "motions/02.mtn"
+        },
+        {
+            "file": "motions/03.mtn"
+        },
+        {
+            "file": "motions/04.mtn"
+        },
+        {
+            "file": "motions/05.mtn"
+        },
+        {
+            "file": "motions/06.mtn"
+        },
+        {
+            "file": "motions/07.mtn"
+        },
+        {
+            "file": "motions/08.mtn"
+        }]
+    }
+}

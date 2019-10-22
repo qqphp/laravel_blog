@@ -1,0 +1,151 @@
+body{
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.toc, .toc * {
+    box-sizing: border-box;
+}
+.toc {
+    padding: 1rem 0;
+    /* box-shadow: 0 0 .2rem .2rem #eee; */
+    width: 100%;
+    max-width: 350px;
+    margin: 1rem 0;
+    color: #333;
+    position: relative;
+    background: #fff;
+}
+.toc.shadow{
+    box-shadow: 0 0 0.5rem #eee;
+}
+.toc.toc-fixed{
+    position: fixed;
+    top: 24px;
+    z-index:10;
+}
+.toc-hightlight {
+    width: 100%;
+    background: #eee;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-left: 3px solid #009a61;
+    transition: all .2s ease;
+}
+
+.toc-brand {
+    padding: 0 1.25rem;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: inherit;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.toc-navbar {
+    position: relative;
+    display: block;
+    /* max-height: 500px;
+    overflow-y: auto; */
+    scroll-behavior: smooth;
+}
+/* 滚动条 */
+.toc-navbar::-webkit-scrollbar-thumb:horizontal { /*水平滚动条的样式*/
+	width: 5px;
+	background-color: #CCCCCC;
+	border-radius: 6px;
+}
+.toc-navbar::-webkit-scrollbar-track-piece {
+	background-color: #fff; /*滚动条的背景颜色*/
+	border-radius: 0; /*滚动条的圆角宽度*/
+}
+.toc-navbar::-webkit-scrollbar {
+	width: 10px; /*滚动条的宽度*/
+	height: 8px; /*滚动条的高度*/
+}
+.toc-navbar::-webkit-scrollbar-thumb:vertical { /*垂直滚动条的样式*/
+	height: 50px;
+	background-color: #999;
+	border-radius: 4px;
+	outline: 2px solid #fff;
+	outline-offset: -2px;
+	border: 2px solid #fff;
+}
+.toc-navbar::-webkit-scrollbar-thumb:hover { /*滚动条的hover样式*/
+	height: 50px;
+	background-color: #9f9f9f;
+    border-radius: 4px;
+}
+
+.toc-nav {
+    display: block;
+    padding-left: 0;
+    margin-bottom: 0;
+    transition: all .3s ease;
+}
+
+.toc-link {
+    display: block;
+    padding: 0.2rem 1.7rem;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #555;
+    position: relative;
+}
+
+.toc-link::before {
+    content: ' ';
+    height: .25rem;
+    width: 0.25rem;
+    background: #555;
+    position: absolute;
+    top: .8rem;
+    left: 1rem;
+}
+
+.toc-link.active::before,
+.toc-link:hover::before {
+    background: #009a61;
+}
+
+.toc-link.active,
+.toc-link:hover {
+    color: #009a61;
+}
+
+/* .toc-link+.toc-nav{
+    max-height: 0;
+    overflow: hidden;
+}
+
+.toc-link.active+.toc-nav{
+    max-height: 1000rem;
+} */
+
+.toc-link.ml-1 {
+    margin-left: 1rem !important;
+}
+
+.toc-link.ml-2 {
+    margin-left: 2rem !important;
+}
+
+.toc-link.ml-3 {
+    margin-left: 3rem !important;
+}
+
+.toc-link.ml-4 {
+    margin-left: 4rem !important;
+}
+
+.toc-link.ml-5 {
+    margin-left: 5rem !important;
+}
+
+.toc-link.ml-6 {
+    margin-left: 6rem !important;
+}
