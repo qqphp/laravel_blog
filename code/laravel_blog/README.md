@@ -1,5 +1,10 @@
 # Laravel诗词博客
->Laravel诗词博客-匠心编程，热爱生活。
+> Laravel诗词博客-匠心编程，热爱生活。
+
+> 感謝各位朋友的支持，很开心和你分享我的代码，希望大家也能多写博客，提高自己能力的同时又能以后回顾所学的知识。
+  饮水思源，你的 **Star** 就是对我最好的支持。
+  
+> 本博客会一直维护和更新，已有基础上做调整，最大程度上确保原有用户可以 pull 代码，获取最佳体验。
 
 #### 简介
 1. 采用 Laravel5.8 版本框架搭建
@@ -15,9 +20,9 @@
 
 #### 如何搭建此博客？
 - ##### 1.前往码云获取项目clone地址
-> 码云项目地址 :`https://gitee.com/leiyong3/laravel_blog`
-
 > GitHub项目地址 :`https://github.com/qqphp-com/laravel-blog-poetry-all`
+
+> 码云项目地址 :`https://gitee.com/leiyong3/laravel_blog`
 
 - ##### 2.使用git，克隆项目到所需存放目录
  - 示例语法：`git clone https://gitee.com/leiyong3/laravel_blog.git hqj_blog`
@@ -32,7 +37,7 @@
  - 关闭调试模式，配置站点URL
  ```
  APP_DEBUG=false
- APP_URL=https://qqphp.com
+ APP_URL=https://qqphp.com(你的域名)
  ```
  - 数据库配置
  ```
