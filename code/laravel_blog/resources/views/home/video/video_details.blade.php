@@ -125,7 +125,7 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="video_url" value="{{asset('storage/'.str_replace('_','/',$video_result->video_link))}}">
+    <input type="hidden" name="video_url" value="{{asset('storage/app/public/'.str_replace('_','/',$video_result->video_link))}}">
     <script>
         $.ajaxSetup({
             headers: {
