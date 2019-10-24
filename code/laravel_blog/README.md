@@ -74,7 +74,7 @@
 - ##### 7.大文件上传分组配置设置
   - 在配置文件的 groups 下新增分组，运行 `php artisan aetherupload:groups` 自动创建对应目录。
   - Linux系统下赋予文件权限，执行 `chmod -R 777 storage/`
-  - Linux系统下执行创建软链接 `ln -s  /www/wwwroot/ly_blog/code/laravel_blog/storage/ /www/wwwroot/ly_blog/code/laravel_blog/public/`
+  - Linux系统下执行创建软链接 `ln -s  /www/wwwroot/项目目录/code/laravel_blog/storage/ /www/wwwroot/项目目录/code/laravel_blog/public/`
   - Windows系统下执行创建软链接 `php artisan storage:link`
 
 - ##### 8.登录博客后台，配置网站设置
