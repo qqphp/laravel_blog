@@ -103,6 +103,20 @@
  - [Composer](https://getcomposer.org)
  - [Creative-Tim](https://www.creative-tim.com)
  - [Bootstrap](https://getbootstrap.com)
+ 
+#### 常见问题
+ - 1.执行 `composer install` 命令,报错无法下载扩展?
+ > 首先确保MySQL数据库能正常连接，然后检查 PHP 扩展。Linux 可以执行 `php -m` 查看已有扩展。必要扩展如下：
+ - PHP >= 7.1.3
+ - OpenSSL PHP 拓展
+ - PDO PHP 拓展
+ - Mbstring PHP 拓展
+ - Tokenizer PHP 拓展
+ - XML PHP 拓展
+ - Ctype PHP 拓展
+ - JSON PHP 拓展
+ - BCMath PHP 拓展
+ - FileInfo PHP 扩展
 
 #### 执照
 Laravel诗词博客根据 [MIT许可证（MIT）](https://github.com/z-song/laravel-admin/blob/master/LICENSE)获得许可。
