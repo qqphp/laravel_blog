@@ -29,18 +29,19 @@
  - 安装 MySQL
  
 #### 如何搭建此博客？
-- ##### 1.使用Git获取项目clone地址
-> GitHub项目地址：`https://github.com/qqphp-com/laravel-blog-poetry`
-> 码云项目地址:`https://gitee.com/leiyong3/laravel_blog`
+- ##### 1.Laravel 诗词博客开源地址
+> GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry`
+
+> 码云项目地址: `https://gitee.com/leiyong3/laravel_blog`
 
  - 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。
-- ##### 2.使用git，克隆项目到所需存放目录
+- ##### 2.使用 Git 克隆项目到所需存放目录
   - 示例语法：`git clone https://gitee.com/leiyong3/laravel_blog.git hqj_blog`
 
 - ##### 3.克隆完成后，进入项目的框架目录
   - **注意**： `.../code/laravel_blog` 目录下
 
-- ##### 4.复制.env.example示例文件，创建.env文件
+- ##### 4.复制 .env.example 示例文件，创建 .env 文件
   - Linux 复制命令： `cp .env.example .env`
 
 - ##### 5.在 `.env` 文件中，配置数据库连接等配置
