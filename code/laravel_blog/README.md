@@ -30,11 +30,12 @@
  
 #### 如何搭建此博客？
 - ##### 1.Laravel 诗词博客开源地址
-> GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry`
+ > GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry`
 
-> 码云项目地址: `https://gitee.com/leiyong3/laravel_blog`
+ > 码云项目地址: `https://gitee.com/leiyong3/laravel_blog`
 
- - 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。
+ > 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。
+ 
 - ##### 2.使用 Git 克隆项目到所需存放目录
   - 示例语法：`git clone https://gitee.com/leiyong3/laravel_blog.git hqj_blog`
 
