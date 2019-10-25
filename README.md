@@ -21,7 +21,15 @@
 9. 支持多种 Live2D 看板娘动画
 10. 可能是世界上最漂亮的博客之一！！！
 
-- ##### 1.前往码云获取项目clone地址
+#### 运行环境
+ - Nginx 1.8 版本
+ - PHP 7.2 版本
+ - 安装 Composer
+ - 安装 Git
+ - 安装 MySQL
+ 
+#### 如何搭建此博客？
+- ##### 1.使用Git获取项目clone地址
 > GitHub项目地址：`https://github.com/qqphp-com/laravel-blog-poetry`
 > 码云项目地址:`https://gitee.com/leiyong3/laravel_blog`
 
