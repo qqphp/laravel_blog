@@ -8,7 +8,7 @@ use Encore\Admin\Traits\AdminBuilder;
 
 class BlogNav extends Model
 {
-    use ModelTree,AdminBuilder;
+    use ModelTree, AdminBuilder;
     protected $table = 'blog_nav';
 
     public function __construct(array $attributes = [])
@@ -20,7 +20,8 @@ class BlogNav extends Model
         $this->setTitleColumn('nav_title');
     }
 
-    public function getTree(){
+    public function getTree()
+    {
         $get_data = BlogNav::orderBy('id', 'asc')->get()->toArray();
         return modelTree($get_data);
     }

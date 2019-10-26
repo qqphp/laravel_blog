@@ -78,9 +78,9 @@ class AppServiceProvider extends ServiceProvider
 
     public function system_nav(){
 //        $collection = new Collection();
-        $top_data = DB::table('blog_nav')->where('nav_open','=',1)->where('nav_pid','=',0)->get()->keyBy('id');
+        $top_data = DB::table('blog_nav')->where('nav_open','=',1)->where('nav_pid','=',0)->orderBy('nav_sort','asc')->get()->keyBy('id');
         $top_id = $top_data->keys();
-        $son_data = DB::table('blog_nav')->where('nav_open','=','1')->whereIn('nav_pid',$top_id)->get();
+        $son_data = DB::table('blog_nav')->where('nav_open','=','1')->whereIn('nav_pid',$top_id)->orderBy('nav_sort','asc')->get();
         foreach ($son_data as $k => $v) {
             $top_data->get($v->nav_pid)->son_nav[$v->id] = $v;
         }

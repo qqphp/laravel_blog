@@ -10,15 +10,16 @@ class BlogAbout extends Model
 
     public function article()
     {
-        return $this->hasOne(BlogAboutArticle::class,'notice_id');
+        return $this->hasOne(BlogAboutArticle::class, 'notice_id');
     }
 
-    public function card1(){
-        return $this->hasMany(BlogAboutCardOne::class,'notice_id');
+    public function card1()
+    {
+        return $this->hasMany(BlogAboutCardOne::class, 'notice_id');
     }
 
-    public function card2(){
-        return $this->hasMany(BlogAboutCardTwo::class,'notice_id');
+    public function card2()
+    {
+        return $this->hasMany(BlogAboutCardTwo::class, 'notice_id');
     }
-
 }

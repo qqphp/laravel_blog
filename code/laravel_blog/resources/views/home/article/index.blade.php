@@ -190,7 +190,7 @@
                                     <i class="fa fa-bookmark-o" aria-hidden="true"></i> {{$v->article_like}}
                                 </a>
                                 <a href="javascript:void(0);" class="btn btn-sm {{$button_color[$k]}} btn-link">
-                                    <i class="fa fa-comments" aria-hidden="true"></i> {{$v->article_click}}
+                                    <i class="far far fa-kiss-beam" aria-hidden="true"></i> {{$v->article_click}}
                                 </a>
                                 <hr>
                             <li>
