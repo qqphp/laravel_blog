@@ -82,7 +82,7 @@
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="{{url('article')}}" rel="tooltip" title="{{$configs['base.website_title']}}" data-placement="bottom">
+            <a class="navbar-brand" href="{{url('article')}}" rel="tooltip" data-placement="bottom">
                 {{$configs['base.website_title']}}
             </a>
             <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
