@@ -139,5 +139,8 @@ memory_limit = 128m ;每个 PHP 页面所吃掉的最大内存。
 - 4.文章内容无法显示或显示后又自动隐藏？
  > 是由于 `Composer install` 时执行过程中出现错误，导致部分扩展未能下载造成，如 Pjax 扩展，可以删除 `Vendor` 目录，检查 PHP 扩展，确认操作环境无误后，重新执行 `Composer install` 下载扩展，删除浏览器缓存，重新查看文章。
 
+- 5.以上步骤配置执行完后，访问域名报 500 的错误？
+ > 确保入口文件,也就是运行目录指向 `.../public/` 目录下。检查是否已经配置 Laravel 的伪静态设置,确保请求引导至 `index.php` 前端控制器。参考 Laravel5.8  中文文档配置 : `https://learnku.com/docs/laravel/5.8/installation/3879`。配置好伪静态，重启web服务器访问即可。
+
 #### 执照
-Laravel诗词博客根据 [MIT许可证（MIT）](https://github.com/z-song/laravel-admin/blob/master/LICENSE)获得许可。
+Laravel诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com/laravel-blog-poetry-all)获得许可。
