@@ -143,7 +143,7 @@
                 <ul>
                     <li></li>
                     <li>
-                        <a href="https://www.creative-tim.com" class="text-secondary" target="_blank">{{$configs['base.website_keep']}}</a>
+                        <a href="http://www.beian.miit.gov.cn/state/outPortal/governmentOpen.action?provinceId=0" class="text-secondary" target="_blank">{{$configs['base.website_keep']}}</a>
                     </li>
                     <li></li>
                 </ul>
