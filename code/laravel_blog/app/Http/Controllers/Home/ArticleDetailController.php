@@ -49,6 +49,15 @@ class ArticleDetailController extends Controller
         $msg_blog_contact            = $request->msg_blog_contact;
         $msg_type                    = $request->msg_type;
         $foreign_id                  = $request->foreign_id;
+        $msgIp = BlogMessage::where('msg_ip', $request->getClientIp())->whereBetween('created_at',[date('Y-m-d'),date('Y-m-d 23:59:59')])->count();
+        if($msgIp > 6){
+            $result = array(
+                'status' => 0,
+                'msg'    => '由于经常遇到恶意留言，特此每个ip限制每日留言数量为6条，十分抱歉。'
+            );
+            return response()->json($result);
+        }
+
         $blogModel                   = new BlogMessage();
         $blogModel->msg_content      = $msg_content;
         $blogModel->msg_blog_name    = $msg_blog_name;
