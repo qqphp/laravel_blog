@@ -26,7 +26,7 @@
                     <div class="card mb-3">
                         <a href="{{url('photo_details',['pid'=>$v->id])}}">
                             <div class="photo-img" data-background="image"
-                                 style="background-image: url('{{__STATIC_UPLOADS__.'/'.$v->photo_img}}');"></div>
+                                 style="background-image: url('{{processing_files($v->photo_img)}}');"></div>
                             <div class="card-body">
                                 <h5 class="card-title">{{$v->photo_title}}</h5>
                                 <p class="card-text">

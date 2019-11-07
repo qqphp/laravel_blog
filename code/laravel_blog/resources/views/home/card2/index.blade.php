@@ -13,7 +13,7 @@
         <div class="row">
             @foreach($result_list as $k => $v)
             <div class="col-sm-3">
-                <div class="card" data-background="image" style="background-image: url('{{__STATIC_UPLOADS__}}/{{$v->share_src}}')">
+                <div class="card" data-background="image" style="background-image: url('{{processing_files($v->share_src)}}')">
                     <div class="card-body" style="width: 100%;">
                         <h6 class="card-category">
                             <i class="fas fa-shapes"></i>

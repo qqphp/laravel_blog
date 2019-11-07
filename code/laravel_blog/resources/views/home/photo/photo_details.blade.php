@@ -28,8 +28,8 @@
             @foreach($photo_result as $v)
                 <div class="col-sm-2">
                     <div class="card mb-3" id="photo_group">
-                        <a no-pjax href="{{__STATIC_UPLOADS__}}/{{$v}}" data-fancybox="gallery" data-caption="{{$v}}" data-type="image">
-                            <div class="photo-img" data-background="image" style="background-image: url('{{__STATIC_UPLOADS__}}/{{$v}}');"></div>
+                        <a no-pjax href="{{processing_files($v)}}" data-fancybox="gallery" data-caption="{{$v}}" data-type="image">
+                            <div class="photo-img" data-background="image" style="background-image: url('{{processing_files($v)}}');"></div>
                         </a>
                         <div class="card-body p-0 text-center">
                             <h5 class="mt-2">{{date_conversion($details_result->updated_at)}}</h5>

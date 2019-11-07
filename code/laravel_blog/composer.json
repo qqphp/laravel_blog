@@ -21,7 +21,8 @@
         "predis/predis": "~1.0",
         "sharemant/laravel-admin-ext-editormd": "^1.0",
         "spatie/eloquent-sortable": "^3.6",
-        "spatie/laravel-pjax": "^2.0"
+        "spatie/laravel-pjax": "^2.0",
+        "zgldh/qiniu-laravel-storage": "^0.10.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -45,3 +45,17 @@ function date_conversion($old_data){
     $old_time = strtotime($old_data);
     return $new_time = date('Y-m-d',$old_time);
 }
+
+/**
+ * Desc:处理文件是本地上传还是七牛云上传的路径
+ * Date:2019/11/6/006
+ */
+function processing_files($file_src){
+    if(env('UPLOAD_TYPE') == 'admin'){
+        $new_src = asset(__STATIC_UPLOADS__.'/'.$file_src);
+    }elseif (env('UPLOAD_TYPE') == 'qiniu'){
+        $file_setting = config('filesystems');
+        $new_src = 'http://'.$file_setting['disks']['qiniu']['domains']['default'].'/'.$file_src;
+    }
+    return $new_src;
+}

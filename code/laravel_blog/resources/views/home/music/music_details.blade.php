@@ -22,7 +22,7 @@
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <img class="card-img pl-5 pr-5" src="{{__STATIC_UPLOADS__}}/{{$music_result->music_img}}" alt="Card image">
+                <img class="card-img pl-5 pr-5" src="{{processing_files($music_result->music_img)}}" alt="Card image">
             </div>
             <div class="col-sm-9">
                 <p class="h3">{{$music_result->music_title}}</p>

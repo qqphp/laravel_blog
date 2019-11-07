@@ -18,7 +18,8 @@
 7. 完美支持音乐播放、相册管理、视频播放
 8. 支持邮箱订阅，发布文章，队列邮件通知
 9. 支持多种 Live2D 看板娘动画
-10. 可能是世界上最漂亮的博客之一！！！
+11. 支持七牛云对象存储文件上传
+11. 可能是世界上最漂亮的博客之一！！！
 
 #### 服务器要求
  - 安装 Nginx 【推荐版本1.8】
@@ -39,15 +40,15 @@
   BCMath PHP 拓展
   FileInfo PHP 扩展
  ```
- 
+
 #### 如何搭建此博客？
 - ##### 1.Laravel 诗词博客开源地址
  > GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry`
 
  > 码云项目地址: `https://gitee.com/leiyong3/laravel_blog`
 
- > 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。
- 
+ > 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。安装教程写的比较详情，因此步骤拆分较多。
+
 - ##### 2.使用 Git 克隆项目到所需存放目录
   - 示例语法：`git clone https://gitee.com/leiyong3/laravel_blog.git hqj_blog`
 
@@ -85,24 +86,47 @@
   - ***注意***： `QUEUE_CONNECTION=sync` ，需要配置成【 `database` 、`redis` 】，否则代码会同步执行，队列将不会生效。本项目使用 `database`，也可以使用 Redis ，但需安装扩展 `predis/predis ~1.0`，同时 PHP 也需要添加 Redis 扩展支持。
 
 - ##### 5.导入初始化演示数据
-  - 将 `.../code/laravel_blog/sql/qqphp_com.sql` 文件数据，导入数据库。
+  - 将 `.../code/laravel_blog/sql/qqphp_com.sql` 文件数据，导入 MySQL 数据库。
 
 - ##### 6.执行 composer install 获取安装框架所需扩展
 
-  - 进入项目目录，也就是 laravel_blog 目录下，存在 `composer.lock` 的目录,执行 `composer install` ,执行后，会生成一个 `vendor` 目录，里面包含了此博客需要的所有扩展。
+  - 进入框架目录，也就是 laravel_blog 目录下，存在 `composer.lock` 的目录,执行 `composer install` ,执行后，会生成一个 `vendor` 目录，里面包含了此博客需要的所有扩展。
 
   - 然后生成应用密钥 、执行 ` php artisan key:generate`
 
-  ***注意***：如果执行报错，有可能是 PHP 扩展缺失，必要扩展 `fileinfo` , PHP 版本需要 >= 7.1.3。
+  ***注意***：确认已安装 `composer`,如果执行 `composer install` 报错，可检查是否缺失列出的 PHP 扩展。
  
 - ##### 7.大文件上传分组配置设置
   - 在配置文件的 groups 下新增分组，运行 `php artisan aetherupload:groups` 自动创建对应目录。
   - Linux系统下赋予文件权限，执行 `chmod -R 777 storage/`
   - Linux系统下执行创建软链接 `ln -s  /www/wwwroot/项目目录/code/laravel_blog/storage/ /www/wwwroot/项目目录/code/laravel_blog/public/`
-  - Windows系统下执行创建软链接 `php artisan storage:link`
 
-- ##### 8.登录博客后台，配置网站设置
-博客后台访问网址： `域名/admin` ,默认管理员账号 `admin`,密码 `admin` 。
+- ##### 8.配置文件上传,可上传本地或者七牛云
+
+上传本地可在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
+
+上传到七牛云可在 `.env` 文件中加入 `UPLOAD_TYPE=qiniu`
+
+```
+    //如果需要上传七牛云，需在 `config/filesystems.php` 文件中加入以下配置。
+    'qiniu' => [
+            'driver'  => 'qiniu',
+            'domains' => [
+                'default'   => 'qiniu.qqphp.com', //你的七牛域名【融合 CDN 加速域名*必填】
+                'https'     => '',         //你的HTTPS域名
+                'custom'    => '',                //你的自定义域名
+            ],
+            'access_key'=> 'Yne-lN5CK1a0**********duEEylaoUjQAI',  //AccessKey【*必填】
+            'secret_key'=> 'I2AecMg_MHUxEj**********zZo9hSWykRx3NO',  //SecretKey【*必填】
+            'bucket'    => 'leiyong-blog',  //Bucket名字【实例名称*必填】
+            'notify_url'=> '',  //持久化处理回调地址
+            'url'       => '',  // 填写文件访问根url
+            'access'    => '',  //空间访问控制 public 或 private
+        ],
+```
+
+- ##### 9.登录博客后台，配置网站设置
+博客后台访问网址： `域名/admin` ,默认管理员账号 `admin`,密码 `admin` ，开始愉快博客写作之旅。
 
 #### 鸣谢
  `Laravel诗词博客` 本博客致谢开源作者们开发的优秀插件或服务。  

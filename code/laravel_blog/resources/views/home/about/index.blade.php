@@ -13,11 +13,11 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="card card-profile">
-                    <div class="card-cover" style="background-image: url('{{asset(__STATIC_UPLOADS__.'/'.$configs['user_info.background'])}}')">
+                    <div class="card-cover" style="background-image: url('{{processing_files($configs['user_info.background'])}}')">
                     </div>
                     <div class="card-avatar border-white">
                         <a href="javascript:void(0);">
-                            <img src="{{asset(__STATIC_UPLOADS__.'/'.$configs['user_info.portrait'])}}" alt="...">
+                            <img src="{{processing_files($configs['user_info.portrait'])}}" alt="...">
                         </a>
                     </div>
                     <div class="card-body">
@@ -120,7 +120,7 @@
                                 <div class="row">
                                     @foreach($about->card2 as $card_key2 => $card2)
                                         <div class="col-md-3 mb-2">
-                                            <div class="card card-pricing" data-background="image" style="background-image: url('{{__STATIC_UPLOADS__}}/{{$card2->card_background}}')">
+                                            <div class="card card-pricing" data-background="image" style="background-image: url('{{processing_files($card2->card_background)}}')">
                                                 <div class="card-body" style="min-height: 0px;padding-top: 0px;padding-bottom: 0px;">
                                                     <div class="card-icon">
                                                         <i class="@if(strpos($card2->card_icon,' ')) {{$card2->card_icon}} @else fa {{$card2->card_icon}} @endif"></i>

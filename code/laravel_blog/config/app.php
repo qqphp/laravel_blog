@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //七牛云
+        zgldh\QiniuStorage\QiniuFilesystemServiceProvider::class
+
     ],
 
     /*

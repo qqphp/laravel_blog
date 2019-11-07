@@ -106,7 +106,6 @@ class BlogNavVideoController extends AdminController
 
         $form->largefile('video_link', '所属视频')->attribute('accept', 'video/*')->rules('required');
 
-
         return $form;
     }
 }

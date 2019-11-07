@@ -32,7 +32,7 @@
                         <div class="carousel-inner" role="listbox">
                             @foreach ($recommended_video as $k=>$v)
                             <div class="carousel-item  @if($k == 0)active @endif > ">
-                                <img class="d-block img-fluid" src="{{__STATIC_UPLOADS__}}/{{$v->video_img}}" alt="{{$v->video_title}}">
+                                <img class="d-block img-fluid" src="{{processing_files($v->video_img)}}" alt="{{$v->video_title}}">
                                 <div class="carousel-caption d-none d-md-block">
                                     <p>{{$v->video_title}}</p>
                                 </div>
@@ -65,7 +65,7 @@
             @foreach($video_result as $v)
                 <div class="col-sm-3">
                     <div class="card">
-                        <div class="video-img" data-background="image" style="background-image: url('{{__STATIC_UPLOADS__}}/{{$v->video_img}}');"></div>
+                        <div class="video-img" data-background="image" style="background-image: url('{{processing_files($v->video_img)}}');"></div>
                         <div class="card-body">
                             <h5 class="card-title">{{$v->video_title}}</h5>
                             <hr>
