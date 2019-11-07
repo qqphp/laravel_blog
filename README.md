@@ -1,7 +1,9 @@
 ![Laravel诗词博客](http://qiniu.qqphp.com/uugai.com_1572319765525.png)
 
 > Laravel诗词博客-匠心编程，热爱生活。
+
 > 感謝各位朋友的支持，很开心和你分享我的代码，希望大家也能多写博客，提高自己能力的同时又能以后回顾所学的知识。饮水思源，你的 **Star** 就是对我最好的支持。
+
 > 本博客会一直维护和更新，已有基础上做调整，最大程度上确保原有用户可以 pull 代码，获取最佳体验。如果你在安装过程中遇到了问题，可以发送邮件到  `leiyong208@gmail.com` ,我将会为你提供帮助。
 
 ![Laravel诗词博客](http://qiniu.qqphp.com/QQ%E6%88%AA%E5%9B%BE20191018102559.png)
@@ -38,6 +40,8 @@
   BCMath PHP 拓展
   FileInfo PHP 扩展
  ```
+ 
+#### 当前版本：V1.2.1 [更新日志](https://www.kancloud.cn/ly978317/laravel/1367412)
 
 #### 如何搭建此博客？
 - ##### 1.Laravel 诗词博客开源地址
@@ -101,9 +105,9 @@
 
 - ##### 8.配置文件上传,可上传本地或者七牛云
 
-上传本地可在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
+上传本地需在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
 
-上传到七牛云可在 `.env` 文件中加入 `UPLOAD_TYPE=qiniu`
+上传到七牛云需在 `.env` 文件中加入 `UPLOAD_TYPE=qiniu`
 
 ```
     //如果需要上传七牛云，需在 `config/filesystems.php` 文件中加入以下配置。
@@ -165,4 +169,4 @@ memory_limit = 128m ;每个 PHP 页面所吃掉的最大内存。
  > 确保入口文件,也就是运行目录指向 `.../public/` 目录下。检查是否已经配置 Laravel 的伪静态设置,确保请求引导至 `index.php` 前端控制器。参考 Laravel5.8  中文文档配置 : `https://learnku.com/docs/laravel/5.8/installation/3879`。配置好伪静态，重启web服务器访问即可。
 
 #### 执照
-Laravel诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com/laravel-blog-poetry-all)获得许可。
+Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com/laravel-blog-poetry-all)获得许可。
