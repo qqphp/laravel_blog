@@ -40,14 +40,12 @@
   BCMath PHP 拓展
   FileInfo PHP 扩展
  ```
- 
-#### 当前版本：V1.2.1 [更新日志](https://www.kancloud.cn/ly978317/laravel/1367412)
 
 #### 如何搭建此博客？
 > 博客开源发布以来，受到了很多人的认同和赞美，同时也收到了很多大家给出的有效建议，在此很感谢大家支持。不过在安装过程中由于大家安装环境不同，部分朋友可能遇到个别小问题难以解决，如果需要作者帮助，可以加博主微信：`leiyong208`。以下安装步骤实际操作过程中并不复杂，都由博主经过多次实际操作，写的较为详尽。
 
 - ##### 1.Laravel 诗词博客开源地址
- > GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry`
+ > GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry-all`
 
  > 码云项目地址: `https://gitee.com/leiyong3/laravel_blog`
 
