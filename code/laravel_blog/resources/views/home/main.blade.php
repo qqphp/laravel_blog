@@ -57,7 +57,7 @@
     @if($configs['base.website_open_bg'] == 1)
         <style type="text/css">
             body {
-                background-image: url('{{asset(__STATIC_UPLOADS__.'/'.$configs['base.website_background'])}}');
+                background-image: url('{{processing_files($configs['base.website_background'])}}');
                 background-size: 100% 100%;
                 background-repeat:no-repeat;
                 background-attachment:fixed;
