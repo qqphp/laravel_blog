@@ -42,7 +42,7 @@
  ```
 
 #### 如何搭建此博客？
-> 博客开源发布以来，受到了很多人的认同和赞美，同时也收到了很多大家给出的有效建议，在此很感谢大家支持。不过在安装过程中由于大家安装环境不同，部分朋友可能遇到个别小问题难以解决，如果需要作者帮助，可以加博主微信：`leiyong208`。以下安装步骤实际操作过程中并不复杂，都由博主经过多次实际操作，写的较为详尽。
+> 博客开源发布以来，受到了很多人的认同和赞美，同时也收到了很多大家给出的有效建议，在此很感谢大家支持。不过在安装过程中由于大家安装环境不同，部分朋友可能遇到个别小问题难以解决，如果需要作者帮助，可以加博主微信：`leiyong208`。以下安装步骤实际操作过程中并不复杂，**务必仔细查阅** ，都由博主经过多次实际操作，写的较为详尽。
 
 - ##### 1.Laravel 诗词博客开源地址
  > GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry-all`
@@ -85,7 +85,7 @@
  QUEUE_CONNECTION=database
  ```
 
-  - ***注意***： `QUEUE_CONNECTION=sync` ，需要配置成【 `database` 、`redis` 】，否则代码会同步执行，队列将不会生效。本项目使用 `database`，也可以使用 Redis ，但需安装扩展 `predis/predis ~1.0`，同时 PHP 也需要添加 Redis 扩展支持。
+  - ***注意***： `QUEUE_CONNECTION=sync` ，需要配置成【 `database` 、`redis` 】，否则代码会同步执行，队列将不会生效。本项目使用 `database`，也可以使用 Redis 。如果使用 Redis 需安装扩展 `predis/predis ~1.0`，同时 PHP 也需要添加 Redis 扩展支持。
 
 - ##### 5.导入初始化演示数据
   - 将 `.../code/laravel_blog/sql/qqphp_com.sql` 文件数据，导入 MySQL 数据库。
@@ -100,12 +100,12 @@
  
 - ##### 7.大文件上传分组配置设置
   - 在配置文件的 groups 下新增分组，运行 `php artisan aetherupload:groups` 自动创建对应目录。
-  - Linux系统下赋予文件权限，执行 `chmod -R 777 storage/`
+  - Linux系统下赋予 `storage`,`public` 文件夹及其子目录读写权限（实际执行按照自己安装目录定），执行 `chmod -R 777 storage/`,`chmod -R 777 public/`
   - Linux系统下执行创建软链接 `ln -s  /www/wwwroot/项目目录/code/laravel_blog/storage/ /www/wwwroot/项目目录/code/laravel_blog/public/`
 
 - ##### 8.配置文件上传,可上传本地或者七牛云
 
-上传本地需在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
+上传本地存储需在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
 
 上传到七牛云需在 `.env` 文件中加入 `UPLOAD_TYPE=qiniu`
 
@@ -149,7 +149,7 @@
  > 首先确保MySQL数据库能正常连接，然后检查 PHP 扩展、再次确认 PHP >= 7.1.3 版本。Linux 可以执行 `php -m` 查看已有扩展。
  
  - 2.无法上传大视频或者歌曲文件？
- >确认上传文件目录 `public` 和 `storage` 有增删权限。然后配置 PHP 配置文件 `php.ini` 的上传文件配置。在配置文件中找到如下参数修改:
+ > **确认上传文件目录 `public` 和 `storage` 有增删权限**。然后配置 PHP 配置文件 `php.ini` 的上传文件配置。在配置文件中找到如下参数修改:
  
  ```
 file_uploads = on ;是否允许通过HTTP上传文件的开关。
