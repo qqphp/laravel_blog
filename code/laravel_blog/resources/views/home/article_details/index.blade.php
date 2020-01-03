@@ -176,7 +176,32 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
+        
+        $(function () {
+            markdown();
+        });
+        function markdown() {
+            var testEditor;
+            $(function() {
+                testEditor = editormd.markdownToHTML("test-editor", { //注意：这里是上面DIV的id
+                    htmlDecode: "style,script,iframe",
+                    emoji: true,
+                    taskList: true,
+                    tocm: true,
+                    markdownSourceCode: false, // 是否保留 Markdown 源码，即是否删除保存源码的 Textarea 标签
+                    flowChart: true, // 默认不解析
+                    sequenceDiagram: true, // 默认不解析
+                    codeFold: true
+                });
+            });
+            $(document).ready(function() {
+                new TocHelper({
+                    top: 100,
+                    tocFixed: false
+                }).reset();
+            });
+        }
+        
         $("#submit_msg").click(function(){
             var msg_content = $("#msg_content").val();
             var msg_blog_name = $("input[name='msg_blog_name']").val();

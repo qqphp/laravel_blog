@@ -132,6 +132,22 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        $(function () {
+            dplay();
+        });
+        function dplay() {
+            var video_url = $("input[name='video_url']").val();
+            const dp = new DPlayer({
+                container: document.getElementById('dplayer'),
+                video: {
+                    url: video_url
+                },
+            });
+            //绑定播放事件
+            dp.on('play', function() {
+
+            });
+        }
 
         $("#submit_msg").click(function(){
             var msg_content = $("#msg_content").val();
@@ -177,6 +193,7 @@
                 }
             });
         });
+
         function append_msg_content(msg_div){
             var msg_board = $("#msg_board");
             msg_board.prepend(msg_div);

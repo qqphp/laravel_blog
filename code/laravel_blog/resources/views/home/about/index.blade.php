@@ -140,4 +140,34 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            copyqq();
+            copywx();
+        });
+        function copyqq() {
+            var btns = document.querySelectorAll('#copy_qq');
+            var clipboard = new ClipboardJS(btns);
+
+            clipboard.on('success', function(e) {
+                layer.msg('复制成功,请到QQ上搜索我添加');
+            });
+
+            clipboard.on('error', function(e) {
+                layer.msg('复制失败,请刷新或手动输入');
+            });
+        }
+        function copywx() {
+            var btns = document.querySelectorAll('#copy_wx');
+            var clipboard = new ClipboardJS(btns);
+
+            clipboard.on('success', function(e) {
+                layer.msg('复制成功,请到微信上搜索我添加');
+            });
+
+            clipboard.on('error', function(e) {
+                layer.msg('复制失败,请刷新或手动输入');
+            });
+        }
+    </script>
 @endsection
