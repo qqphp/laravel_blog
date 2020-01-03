@@ -168,6 +168,12 @@ memory_limit = 128m ;每个 PHP 页面所吃掉的最大内存。
 - 5.以上步骤配置执行完后，访问域名报 500 的错误？
  > 确保入口文件,也就是运行目录指向 `.../public/` 目录下。检查是否已经配置 Laravel 的伪静态设置,确保请求引导至 `index.php` 前端控制器。参考 Laravel5.8  中文文档配置 : `https://learnku.com/docs/laravel/5.8/installation/3879`。配置好伪静态，重启web服务器访问即可。
 
+- 6.composer install时出现 `Warning: putenv() has been disabled for security reasons` 的问题？
+ > 是由于 PHP 可能在安装后会自动禁用一些函数，去除禁用函数即可。
+ 
+- 7.网站安装好后，访问出现 `Warning: require(/www/wwwroot/blog/code/laravel_blog/vendor/autoload.php): failed to open stream: Operation not permitted in /www/wwwroot/blog/code/laravel_blog/public/index.php on line 24`的问题？
+ > 是由于站点开启了防跨站攻击（open_basedir）的设置，关闭该设置后重启 PHP 服务即可。
+
 #### 执照
 Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com/laravel-blog-poetry-all)获得许可。
 
