@@ -22,11 +22,12 @@
 11. 可能是世界上最漂亮的博客之一！！！
 
 #### 服务器要求
- - 安装 Nginx 【推荐版本1.8】
+ - 安装 Nginx 【推荐版本1.8】 / Apache -- 切记设置 Laravel 的伪静态，隐藏index.php文件入口。
  - 安装 Composer
  - 安装 MySQL 【推荐存储引擎 InnoDB】
  - 安装 Git 【推荐安装】
  - 安装 PHP >= 7.1.3 【推荐版本7.2】
+ - (如果对PHP不熟悉、或者对于Laravel框架不熟悉的同学，推荐使用宝塔面板。[宝塔面板](https://www.bt.cn/?invite_code=MV9wbXRqeWc=))
  > PHP必要扩展
  ```
   DOM PHP 扩展
@@ -85,7 +86,7 @@
  QUEUE_CONNECTION=database
  ```
 
-  - ***注意***： `QUEUE_CONNECTION=sync` ，需要配置成【 `database` 、`redis` 】，否则代码会同步执行，队列将不会生效。本项目使用 `database`，也可以使用 Redis 。如果使用 Redis 需安装扩展 `predis/predis ~1.0`，同时 PHP 也需要添加 Redis 扩展支持。
+  - ***注意***： `QUEUE_CONNECTION=sync` ，需要配置成【`database` 、`redis` 】，否则代码会同步执行，队列将不会生效。本项目使用 `database`，也可以使用 Redis 。如果使用 Redis 需安装扩展 `predis/predis ~1.0`，同时 PHP 也需要添加 Redis 扩展支持。
 
 - ##### 5.导入初始化演示数据
   - 将 `.../code/laravel_blog/sql/qqphp_com.sql` 文件数据，导入 MySQL 数据库。
@@ -94,14 +95,14 @@
 
   - 进入框架目录，也就是 laravel_blog 目录下，存在 `composer.lock` 的目录,执行 `composer install` ,执行后，会生成一个 `vendor` 目录，里面包含了此博客需要的所有扩展。
 
-  - 然后生成应用密钥 、执行 ` php artisan key:generate`
+  - 然后生成应用密钥 ，执行命令： `php artisan key:generate`
 
   ***注意***：确认已安装 `composer`,如果执行 `composer install` 报错，可检查是否缺失列出的 PHP 扩展。
  
 - ##### 7.大文件上传分组配置设置
-  - 在配置文件的 groups 下新增分组，运行 `php artisan aetherupload:groups` 自动创建对应目录。
-  - Linux系统下赋予 `storage`,`public` 文件夹及其子目录读写权限（实际执行按照自己安装目录定），执行 `chmod -R 777 storage/`,`chmod -R 777 public/`
-  - Linux系统下执行创建软链接 `ln -s  /www/wwwroot/项目目录/code/laravel_blog/storage/ /www/wwwroot/项目目录/code/laravel_blog/public/`
+  - 执行命令： `php artisan aetherupload:groups` 会自动在配置文件的 groups 下新增分组。
+  - Linux系统下赋予框架目录中 `storage`,`public` 文件夹及其子目录读写权限（实际执行按照自己安装目录定），命令示例： `chmod -R 777 storage/`,`chmod -R 777 public/`
+  - Linux系统下执行创建软链接，需要找到 `storage`,`public` 的绝对路径（注意两个绝对路径中有个空格），命令示例： `ln -s  /www/wwwroot/项目目录/code/laravel_blog/storage/ /www/wwwroot/项目目录/code/laravel_blog/public/`
 
 - ##### 8.配置文件上传,可上传本地或者七牛云
 
@@ -110,17 +111,17 @@
 上传到七牛云需在 `.env` 文件中加入 `UPLOAD_TYPE=qiniu`
 
 ```
-    //如果需要上传七牛云，需在 `config/filesystems.php` 文件中加入以下配置。
+    //如果需要上传七牛云，需在 `../config/filesystems.php` 文件中加入以下配置，只需填写必填项即可使用。
     'qiniu' => [
             'driver'  => 'qiniu',
             'domains' => [
-                'default'   => 'qiniu.qqphp.com', //你的七牛域名【融合 CDN 加速域名*必填】
+                'default'   => 'qiniu.qqphp.com', //你的七牛域名【融合 CDN 加速域名 *必填】
                 'https'     => '',         //你的HTTPS域名
                 'custom'    => '',                //你的自定义域名
             ],
             'access_key'=> 'Yne-lN5CK1a0**********duEEylaoUjQAI',  //AccessKey【*必填】
             'secret_key'=> 'I2AecMg_MHUxEj**********zZo9hSWykRx3NO',  //SecretKey【*必填】
-            'bucket'    => 'leiyong-blog',  //Bucket名字【实例名称*必填】
+            'bucket'    => 'leiyong-blog',  //Bucket名字【实例名称 *必填】
             'notify_url'=> '',  //持久化处理回调地址
             'url'       => '',  // 填写文件访问根url
             'access'    => '',  //空间访问控制 public 或 private
@@ -181,3 +182,4 @@ Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com/
  - *2019年10月01日* 博客第一个版本正式上线与开源
  - *2019年11月07日* 新增七牛云存储文件上传功能与配置
  - *2020年01月03日* 修复文章详情刷新后内容不见BUG，修复视频详情刷新后无法再次播放问题。
+ - *2020年02月08日* 修改文章内容字段为 ``longtext``，更新安装描述

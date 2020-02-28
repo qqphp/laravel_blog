@@ -466,7 +466,7 @@ CREATE TABLE `blog_nav_article`  (
   `article_title` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章标题',
   `article_tag` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL COMMENT '文章标签',
   `article_describe` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL COMMENT '文章描述',
-  `article_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章内容',
+  `article_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章内容',
   `article_click` int(11) NOT NULL DEFAULT 0 COMMENT '点击量',
   `article_show` tinyint(4) NOT NULL DEFAULT 1 COMMENT '是否显示【1是2否】',
   `article_sort` int(11) NOT NULL DEFAULT 100 COMMENT '文章排序',
