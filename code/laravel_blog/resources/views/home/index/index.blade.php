@@ -71,6 +71,7 @@
     </div>
     <div class="moving-clouds" style="background-image: url('{{__STATIC_HOME__}}/assets/img/clouds.png'); "></div>
     <h6 class="category category-absolute">{{$configs['base.website_keep']}}</h6>
+    <h6 class="category category-absolute ml-auto mr-auto"><a href="http://www.beian.miit.gov.cn" target="_blank">{{$configs['base.website_keep']}}</a></h6>
 </div>
 </body>
 <!--   核心JS文件   -->

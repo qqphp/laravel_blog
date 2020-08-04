@@ -1,20 +1,3 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : hqj_sql
- Source Server Type    : MySQL
- Source Server Version : 50560
- Source Host           : 39.108.229.126:3306
- Source Schema         : hqj_blog
-
- Target Server Type    : MySQL
- Target Server Version : 50560
- File Encoding         : 65001
-
- Date: 22/10/2019 15:54:57
-*/
-
-SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
