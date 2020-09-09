@@ -4,7 +4,7 @@
 
 > 感謝各位朋友的支持，很开心和你分享我的代码，希望大家也能多写博客，提高自己能力的同时又能以后回顾所学的知识。饮水思源，你的 **Star** 就是对我最好的支持。
 
-> 本博客会一直维护和更新，已有基础上做调整，最大程度上确保原有用户可以 pull 代码，获取最佳体验。如果你在安装过程中遇到了问题，请加博主微信：`leiyong208` ,我将会为你提供帮助。
+> 本博客会一直维护和更新，已有基础上做调整，最大程度上确保原有用户可以 pull 代码，获取最佳体验。如果你在安装过程中遇到了问题，请提交 `Issue` ,我将会为你提供帮助。
 
 ![Laravel诗词博客](http://qiniu.qqphp.com/QQ%E6%88%AA%E5%9B%BE20191018102559.png)
 
@@ -19,15 +19,12 @@
 8. 支持邮箱订阅，发布文章，队列邮件通知
 9. 支持多种 Live2D 看板娘动画
 10. 支持七牛云对象存储文件上传
-11. 可能是世界上最漂亮的博客之一！！！
+11. 可能是世界上最漂亮的博客之一
 
 #### 服务器要求
- - 安装 Nginx 【推荐版本1.8】 / Apache -- 切记设置 Laravel 的伪静态，隐藏index.php文件入口。
- - 安装 Composer
- - 安装 MySQL 【推荐存储引擎 InnoDB】
- - 安装 Git 【推荐安装】
+ - 安装 Nginx/Apache
+ - 安装 MySQL
  - 安装 PHP >= 7.1.3 【推荐版本7.2】
- - (如果对PHP不熟悉、或者对于Laravel框架不熟悉的同学，推荐使用宝塔面板。[宝塔面板](https://www.bt.cn/?invite_code=MV9wbXRqeWc=))
  > PHP必要扩展
  ```
   DOM PHP 扩展
@@ -43,30 +40,22 @@
  ```
 
 #### 如何搭建此博客？
-> 博客开源发布以来，受到了很多人的认同和赞美，同时也收到了很多大家给出的有效建议，在此很感谢大家支持。不过在安装过程中由于大家安装环境不同，部分朋友可能遇到个别小问题难以解决，如果需要作者帮助，可以加博主微信：`leiyong208`。以下安装步骤实际操作过程中并不复杂，**务必仔细查阅** ，都由博主经过多次实际操作，写的较为详尽。
+> 博客开源发布以来，受到了很多人的认同和赞美，同时也收到了很多大家给出的有效建议，在此很感谢大家支持。不过在安装过程中由于大家安装环境不同，部分朋友可能遇到个别小问题难以解决，请提交 `Issue` ,我将会为你提供帮助，**务必仔细查阅** ，都由作者经过多次实际操作，写的较为详尽。
 
-- ##### 1.Laravel 诗词博客开源地址
- > GitHub项目地址： `https://github.com/qqphp-com/laravel-blog-poetry-all`
+- ##### Laravel 诗词博客开源地址
+ > GitHub项目地址： `https://github.com/qqphp-com`
 
- > 码云项目地址: `https://gitee.com/leiyong3/laravel_blog`
+ > 码云项目地址: `https://gitee.com/qqphp`
 
- > 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。安装教程写的比较详情，因此步骤拆分较多。
+ > 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。安装教程写的比较详情，请仔细查阅。
 
-- ##### 2.使用 Git 克隆项目到所需存放目录
-  - 示例语法：`git clone https://gitee.com/leiyong3/laravel_blog.git hqj_blog`
-
-- ##### 3.克隆完成后，进入项目的框架目录
-  - **注意**： `.../code/laravel_blog` 目录下
-
-- ##### 4.复制 .env.example 示例文件，创建 .env 文件
-  - Linux 复制命令： `cp .env.example .env`
-
-- ##### 5.在 `.env` 文件中，配置数据库连接等配置
+- ##### 在 `.env` 文件中，配置数据库连接等配置
   - 关闭调试模式，配置站点URL
 
  ```
  APP_DEBUG=false
  APP_URL=https://qqphp.com(你的域名)
+ QUEUE_CONNECTION=database
  ```
 
   - 数据库配置
@@ -75,64 +64,48 @@
  DB_CONNECTION=mysql
  DB_HOST=127.0.0.1
  DB_PORT=3306
- DB_DATABASE=laravel_blog
- DB_USERNAME=laravel_blog
+ DB_DATABASE=qqphp
+ DB_USERNAME=qqphp
  DB_PASSWORD=密码
  ```
 
-  - 配置队列运行方式
+- ##### 导入初始化演示数据
+  - 将 `.../code/laravel_blog/sql/qqphp.sql` 文件数据，导入 MySQL 数据库。
 
- ```
- QUEUE_CONNECTION=database
- ```
+- ##### 设置文件目录软链接
+  - 运行 `php artisan aetherupload:groups` 自动创建对应目录。
+  - Linux系统下赋予 `storage`,`public` 目录读写权限，执行 `chmod -R 777 storage`,`chmod -R 777 public`
+  - Linux系统下执行创建软链接 `ln -s /www/wwwroot/项目目录/storage/ /www/wwwroot/项目目录/public/`
 
-  - ***注意***： `QUEUE_CONNECTION=sync` ，需要配置成【`database` 、`redis` 】，否则代码会同步执行，队列将不会生效。本项目使用 `database`，也可以使用 Redis 。如果使用 Redis 需安装扩展 `predis/predis ~1.0`，同时 PHP 也需要添加 Redis 扩展支持。
-
-- ##### 5.导入初始化演示数据
-  - 将 `.../code/laravel_blog/sql/qqphp_com.sql` 文件数据，导入 MySQL 数据库。
-
-- ##### 6.执行 composer install 获取安装框架所需扩展
-
-  - 进入框架目录，也就是 laravel_blog 目录下，存在 `composer.lock` 的目录,执行 `composer install` ,执行后，会生成一个 `vendor` 目录，里面包含了此博客需要的所有扩展。
-
-  - 然后生成应用密钥 ，执行命令： `php artisan key:generate`
-
-  ***注意***：确认已安装 `composer`,如果执行 `composer install` 报错，可检查是否缺失列出的 PHP 扩展。
- 
-- ##### 7.大文件上传分组配置设置
-  - 执行命令： `php artisan aetherupload:groups` 会自动在配置文件的 groups 下新增分组。
-  - Linux系统下赋予框架目录中 `storage`,`public` 文件夹及其子目录读写权限（实际执行按照自己安装目录定），命令示例： `chmod -R 777 storage/`,`chmod -R 777 public/`
-  - Linux系统下执行创建软链接，需要找到 `storage`,`public` 的绝对路径（注意两个绝对路径中有个空格），命令示例： `ln -s  /www/wwwroot/项目目录/code/laravel_blog/storage/ /www/wwwroot/项目目录/code/laravel_blog/public/`
-
-- ##### 8.配置文件上传,可上传本地或者七牛云
+- ##### 配置文件上传,可上传本地或者七牛云
 
 上传本地存储需在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
 
 上传到七牛云需在 `.env` 文件中加入 `UPLOAD_TYPE=qiniu`
 
 ```
-    //如果需要上传七牛云，需在 `../config/filesystems.php` 文件中加入以下配置，只需填写必填项即可使用。
+    //如果需要上传七牛云，需在 `config/filesystems.php` 文件中加入以下配置。
     'qiniu' => [
             'driver'  => 'qiniu',
             'domains' => [
-                'default'   => 'qiniu.qqphp.com', //你的七牛域名【融合 CDN 加速域名 *必填】
+                'default'   => 'qiniu.qqphp.com', //你的七牛域名【融合 CDN 加速域名*必填】
                 'https'     => '',         //你的HTTPS域名
                 'custom'    => '',                //你的自定义域名
             ],
             'access_key'=> 'Yne-lN5CK1a0**********duEEylaoUjQAI',  //AccessKey【*必填】
             'secret_key'=> 'I2AecMg_MHUxEj**********zZo9hSWykRx3NO',  //SecretKey【*必填】
-            'bucket'    => 'leiyong-blog',  //Bucket名字【实例名称 *必填】
+            'bucket'    => 'leiyong-blog',  //Bucket名字【实例名称*必填】
             'notify_url'=> '',  //持久化处理回调地址
             'url'       => '',  // 填写文件访问根url
             'access'    => '',  //空间访问控制 public 或 private
         ],
 ```
 
-- ##### 9.登录博客后台，配置网站设置
+- ##### 登录博客后台，配置网站设置
 博客后台访问网址： `域名/admin` ,默认管理员账号 `admin`,密码 `admin` ，开始愉快博客写作之旅。
 
 #### 鸣谢
- `Laravel诗词博客` 本博客致谢开源作者们开发的优秀插件或服务。  
+ `Laravel诗词博客` 本博客致谢开源作者们开发的优秀插件或服务。
  - [Laravel](https://laravel.com)
  - [Laravel-admin](https://github.com/z-song/laravel-admin)
  - [Jquery-pjax](https://github.com/defunkt/jquery-pjax)
@@ -144,15 +117,15 @@
  - [Composer](https://getcomposer.org)
  - [Creative-Tim](https://www.creative-tim.com)
  - [Bootstrap](https://getbootstrap.com)
- 
+
 #### 常见问题
- - 1.执行 `composer install` 命令,报错无法下载扩展?
+- 1.执行 `composer install` 命令,报错无法下载扩展?
  > 首先确保MySQL数据库能正常连接，然后检查 PHP 扩展、再次确认 PHP >= 7.1.3 版本。Linux 可以执行 `php -m` 查看已有扩展。
- 
- - 2.无法上传大视频或者歌曲文件？
- > **确认上传文件目录 `public` 和 `storage` 有增删权限**。然后配置 PHP 配置文件 `php.ini` 的上传文件配置。在配置文件中找到如下参数修改:
- 
- ```
+
+- 2.无法上传大视频或者歌曲文件？
+ > **确认上传文件目录 `public` 和 `storage` 有增删权限**, 且设置了软连接。然后配置 PHP 配置文件 `php.ini` 的上传文件配置。在配置文件中找到如下参数修改:
+
+```
 file_uploads = on ;是否允许通过HTTP上传文件的开关。
 upload_max_filesize = 1024m ;允许上传文件大小的最大值。
 post_max_size = 1024m ;指通过表单 POST 给 PHP 的所能接收的最大值。
@@ -176,11 +149,10 @@ memory_limit = 128m ;每个 PHP 页面所吃掉的最大内存。
  > 是由于站点开启了防跨站攻击（open_basedir）的设置，关闭该设置后重启 PHP 服务即可。
 
 #### 执照
-Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com/laravel-blog-poetry-all)获得许可。
+Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com)获得许可。
 
 #### 博客修复与调整日志
  - *2019年10月01日* 博客第一个版本正式上线与开源
  - *2019年11月07日* 新增七牛云存储文件上传功能与配置
  - *2020年01月03日* 修复文章详情刷新后内容不见BUG，修复视频详情刷新后无法再次播放问题。
- - *2020年02月08日* 修改文章内容字段为 ``longtext``，更新安装描述
- - *2020年08月04日* 修改备案号指向工信部链接，修复一个导入数据库报错Bug
+ - *2020年09月09日* 修复顶级导航下无子导航时页面报错Bug，调整安装逻辑。

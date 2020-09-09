@@ -1,0 +1,34 @@
+{
+    "name": "dianwoung/large-file-upload",
+    "description": "An extension of laravel-admin for uploading large files",
+    "type": "library",
+    "keywords": ["laravel-admin", "extension"],
+    "homepage": "https://github.com/Dianwoung/large-file-upload",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dian Wang",
+            "email": "dian126@foxmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "encore/laravel-admin": "~1.6",
+        "peinhu/aetherupload-laravel": "~2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Encore\\LargeFileUpload\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Encore\\LargeFileUpload\\LargeFileUploadServiceProvider"
+            ]
+        }
+    }
+}

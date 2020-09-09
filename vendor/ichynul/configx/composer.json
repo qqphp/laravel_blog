@@ -1,0 +1,34 @@
+{
+    "name": "ichynul/configx",
+    "description": "laravel-admin extension configx",
+    "type": "library",
+    "keywords": ["laravel-admin", "extension"],
+    "homepage": "https://github.com/ichynul/configx",
+    "license": "MIT",
+    "authors": [{
+        "name": "ichynul",
+        "email": "ichynul@outlook.com"
+    }],
+    "require": {
+        "php": ">=7.0.0",
+        "encore/laravel-admin": "~1.6",
+        "laravel-admin-ext/config": "^1.0",
+        "ichynul/row-table": "^1.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ichynul\\Configx\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ichynul\\Configx\\ConfigxServiceProvider"
+            ]
+
+        }
+    }
+}

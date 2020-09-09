@@ -1,0 +1,36 @@
+{
+  "name": "sharemant/laravel-admin-ext-editormd",
+  "description": "EditorMd(V.1.5.0) for laravel-admin.",
+  "type": "library",
+  "keywords": [
+    "laravel-admin",
+    "extension"
+  ],
+  "homepage": "https://github.com/laravel-admin-ext/editormd",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "ShareManT",
+      "email": "sharemant@163.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "encore/laravel-admin": "~1.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ShareManT\\EditorMd\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ShareManT\\EditorMd\\EditorMdServiceProvider"
+      ]
+    }
+  }
+}
