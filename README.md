@@ -64,8 +64,8 @@
  DB_CONNECTION=mysql
  DB_HOST=127.0.0.1
  DB_PORT=3306
- DB_DATABASE=qqphp
- DB_USERNAME=qqphp
+ DB_DATABASE=数据库名
+ DB_USERNAME=帐号
  DB_PASSWORD=密码
  ```
 
@@ -73,7 +73,6 @@
   - 将 `.../code/laravel_blog/sql/qqphp.sql` 文件数据，导入 MySQL 数据库。
 
 - ##### 设置文件目录软链接
-  - 运行 `php artisan aetherupload:groups` 自动创建对应目录。
   - Linux系统下赋予 `storage`,`public` 目录读写权限，执行 `chmod -R 777 storage`,`chmod -R 777 public`
   - Linux系统下执行创建软链接 `ln -s /www/wwwroot/项目目录/storage/ /www/wwwroot/项目目录/public/`
 
@@ -144,9 +143,13 @@ memory_limit = 128m ;每个 PHP 页面所吃掉的最大内存。
 
 - 6.composer install时出现 `Warning: putenv() has been disabled for security reasons` 的问题？
  > 是由于 PHP 可能在安装后会自动禁用一些函数，去除禁用函数即可。
- 
+
 - 7.网站安装好后，访问出现 `Warning: require(/www/wwwroot/blog/code/laravel_blog/vendor/autoload.php): failed to open stream: Operation not permitted in /www/wwwroot/blog/code/laravel_blog/public/index.php on line 24`的问题？
  > 是由于站点开启了防跨站攻击（open_basedir）的设置，关闭该设置后重启 PHP 服务即可。
+
+- 8.上传文件出现 `stream_copy_to_stream(): read of 8192 bytes failed with errno=21 Is a directory` 报错？
+ > 是由于 PHP 配置中默认上传文件大小为 2M，修改 php.ini 文件中 `upload_max_filesize = 2M`的配置，调整到你需到的大小即可。
+
 
 #### 执照
 Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com)获得许可。
@@ -155,4 +158,4 @@ Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com)
  - *2019年10月01日* 博客第一个版本正式上线与开源
  - *2019年11月07日* 新增七牛云存储文件上传功能与配置
  - *2020年01月03日* 修复文章详情刷新后内容不见BUG，修复视频详情刷新后无法再次播放问题。
- - *2020年09月09日* 修复顶级导航下无子导航时页面报错Bug，调整安装逻辑。
+ - *2020年09月09日* 修复顶级导航下无子导航时页面报错Bug，简化安装逻辑。
