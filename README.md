@@ -50,15 +50,13 @@
  > 如果你喜欢此博客，或者对你有帮助，可以 **Star** 支持，十分感谢。安装教程写的比较详情，请仔细查阅。
 
 - ##### 在 `.env` 文件中，配置数据库连接等配置
-  - 关闭调试模式，配置站点URL
-
  ```
  APP_DEBUG=false
  APP_URL=https://qqphp.com(你的域名)
  QUEUE_CONNECTION=database
  ```
 
-  - 数据库配置
+- 数据库配置
 
  ```
  DB_CONNECTION=mysql
@@ -73,10 +71,11 @@
   - 将 `.../code/laravel_blog/sql/qqphp.sql` 文件数据，导入 MySQL 数据库。
 
 - ##### 设置文件目录软链接
+  - 执行命令： php artisan aetherupload:groups 会自动在配置文件的 groups 下新增分组
   - Linux系统下赋予 `storage`,`public` 目录读写权限，执行 `chmod -R 777 storage`,`chmod -R 777 public`
   - Linux系统下执行创建软链接 `ln -s /www/wwwroot/项目目录/storage/ /www/wwwroot/项目目录/public/`
 
-- ##### 配置文件上传,可上传本地或者七牛云
+- 配置文件上传,可上传本地或者七牛云
 
 上传本地存储需在 `.env` 文件中加入 `UPLOAD_TYPE=admin`
 
