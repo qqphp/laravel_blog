@@ -72,16 +72,16 @@ return [
         'qiniu' => [
             'driver'  => 'qiniu',
             'domains' => [
-                'default'   => 'qiniu.qqphp.com', //你的七牛域名
-                'https'     => '',         //你的HTTPS域名
-                'custom'    => '',                //你的自定义域名
+                'default' => 'qiniu.qqphp.com', //你的七牛域名【融合CDN加速域名 *必填】
+                'https'   => '',                //你的HTTPS域名
+                'custom'  => '',                //你的自定义域名
             ],
-            'access_key'=> 'Yne-lN5CK1a096l********_duEEylaoUjQAI',  //AccessKey
-            'secret_key'=> 'I2AecMg_MHUxE********9hSWykRx3NO',  //SecretKey
-            'bucket'    => 'leiyong-blog',  //Bucket名字
-            'notify_url'=> '',  //持久化处理回调地址
-            'url'       => '',  // 填写文件访问根url
-            'access'    => '',  //空间访问控制 public 或 private
+            'access_key'=> 'Yne-lN5CK1a096l********_duEEylaoUjQAI',  //AccessKey【*必填】
+            'secret_key'=> 'I2AecMg_MHUxE********9hSWykRx3NO',       //SecretKey【*必填】
+            'bucket'    => 'leiyong-blog',  //Bucket名字【*必填】
+            'notify_url'=> '',              //持久化处理回调地址
+            'url'       => '',              //填写文件访问根url
+            'access'    => '',              //空间访问控制 public 或 private
         ],
     ],
 

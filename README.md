@@ -213,6 +213,9 @@ memory_limit        = 256m;   # 每个 PHP 页面所吃掉的最大内存。
 - 8.上传文件出现 `stream_copy_to_stream(): read of 8192 bytes failed with errno=21 Is a directory` 报错？
 
  > 是由于 PHP 配置中默认上传文件大小为 2M，修改 php.ini 文件中 `upload_max_filesize = 2M` 的配置，调整到您需到的大小即可。
+- 9.浏览器中网页标签中的icon无法显示，引用者策略: strict-origin-when-cross-origin，状态：Mixed Content？
+
+ > Nginx站点配置中添加 `add_header Access-Control-Allow-Origin *;` 和 `add_header Content-Security-Policy upgrade-insecure-requests;`，修改配置后重启Nginx服务。
 
 
 #### 执照
@@ -225,3 +228,4 @@ Laravel 诗词博客根据 [MIT许可证（MIT）](https://github.com/qqphp-com)
  - *2019年11月07日* 新增七牛云存储文件上传功能与配置
  - *2020年01月03日* 修复文章详情刷新后内容不见BUG,修复视频详情刷新后无法再次播放问题。
  - *2020年09月09日* 修复顶级导航下无子导航时页面报错Bug,简化安装逻辑。
+ - *2023年05月10日* 优化安装步骤描述。
