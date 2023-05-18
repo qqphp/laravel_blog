@@ -137,7 +137,7 @@ class BlogNavController extends AdminController
             $select_nav[$v['id']] = str_repeat('|----', $v['level']) . $v['nav_title'];
         }
         $form->select('nav_pid', '顶级导航')->options($select_nav)->default(0);
-        $form->text('nav_title', '导航标题')->attribute('autocomplete', 'off')->rules('required|max:40');
+        $form->text('nav_title', '导航标题')->attribute('autocomplete', 'off')->rules('required|max:80');
 
         $form->select('nav_type', '导航分类')->options($this->navigation);
         $states = [

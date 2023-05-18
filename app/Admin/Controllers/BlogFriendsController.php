@@ -76,7 +76,7 @@ class BlogFriendsController extends AdminController
     {
         $form = new Form(new BlogFriends);
 
-        $form->text('friends_title', '博客名称')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('friends_title', '博客名称')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->url('friends_link', '博客链接')->attribute('autocomplete', 'off')->required()->rules('required|url')->creationRules(['required' => 'unique:blog_friends']);
         $form->textarea('friends_describe', '博客描述')->attribute('autocomplete', 'off')->required()->rules('required|max:100');
         $form->text('friends_contact', '联系方式')->attribute('autocomplete', 'off')->required()->rules('required');

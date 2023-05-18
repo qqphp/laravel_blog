@@ -84,7 +84,7 @@ class BlogNavMusicController extends AdminController
     {
         $form = new Form(new BlogNavMusic);
         $form->select('nav_id', '所属导航')->options($this->nav_name)->rules('required|integer');
-        $form->text('music_title', '歌单标题')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('music_title', '歌单标题')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->tags('music_tag', '歌单标签')->help('建议使用标签总数量不超过6个');
         $form->textarea('music_describe', '歌单描述')->rules('required');
         $form->image('music_img', '歌单封面')->uniqueName()->attribute('accept', 'image/*')->required();

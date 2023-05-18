@@ -82,7 +82,7 @@ class BlogNavShareOneController extends AdminController
     {
         $form = new Form(new BlogNavShareOne);
         $form->select('nav_id', '所属导航')->options($this->nav_name)->rules('required|integer');
-        $form->text('share_title', '分享标题')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('share_title', '分享标题')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->icon('share_icon', 'icon图标')->help('更多icon图标访问 <a href="https://fontawesome.com" target="_blank">https://fontawesome.com</a>,填写该icon完整引用,示例[fab fa-php、far fa-futbol]')->rules('required');
         $form->text('share_link', '分享链接')->rules('url');
         $form->image('share_src', '分享封面')->uniqueName()->attribute('accept', 'image/*')->required();

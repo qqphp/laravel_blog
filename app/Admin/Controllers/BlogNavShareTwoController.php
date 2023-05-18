@@ -82,8 +82,8 @@ class BlogNavShareTwoController extends AdminController
     {
         $form = new Form(new BlogNavShareTwo);
         $form->select('nav_id', '所属导航')->options($this->nav_name)->rules('required|integer');
-        $form->text('share_title', '分享标题')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
-        $form->text('share_note', '分享副标题')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('share_title', '分享标题')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
+        $form->text('share_note', '分享副标题')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->text('share_link', '分享链接')->rules('url');
         $form->image('share_src', '分享封面')->uniqueName()->attribute('accept', 'image/*')->required();
         $form->number('share_sort', '分享排序')->default(100)->rules('integer|between:0,999999');

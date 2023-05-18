@@ -87,7 +87,7 @@ class BlogNavVideoController extends AdminController
     {
         $form = new Form(new BlogNavVideo);
         $form->select('nav_id', '所属导航')->options($this->nav_name)->rules('required|integer');
-        $form->text('video_title', '视频标题')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('video_title', '视频标题')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->tags('video_tag', '视频标签')->help('建议使用标签总数量不超过6个');
         $form->textarea('video_describe', '视频描述')->rules('required');
         $form->image('video_img', '视频封面')->uniqueName()->attribute('accept', 'image/*')->required();

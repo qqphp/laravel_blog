@@ -63,7 +63,7 @@ class BlogNoticeController extends AdminController
     {
         $form = new Form(new BlogNotice);
 
-        $form->text('notice_title', '公告标题')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('notice_title', '公告标题')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->simditor('notice_content', '公告内容')->rules('required');
         $form->number('notice_sort', '公告排序')->default(100)->rules('integer|between:0,999999');
         $states = [

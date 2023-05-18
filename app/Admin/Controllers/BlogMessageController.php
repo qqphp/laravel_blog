@@ -71,7 +71,7 @@ class BlogMessageController extends AdminController
     protected function form()
     {
         $form = new Form(new BlogMessage);
-        $form->text('msg_blog_name', '留言博客名称')->attribute('autocomplete', 'off')->required()->rules('required|max:40');
+        $form->text('msg_blog_name', '留言博客名称')->attribute('autocomplete', 'off')->required()->rules('required|max:80');
         $form->text('msg_blog_link', '留言博客链接')->attribute('autocomplete', 'off')->required()->rules('required|url');
         $form->text('msg_blog_contact', '留言联系方式')->attribute('autocomplete', 'off')->required()->rules('required');
         $states = [
